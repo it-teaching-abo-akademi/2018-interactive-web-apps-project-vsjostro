@@ -1,0 +1,21 @@
+body {
+    background: gray;
+
+}
+
+.Portfolio {
+    position: relative;
+    height: 400px;
+    margin: 40px;
+    padding: 40px;
+    
+    background: #fff;
+}
+
+.Stocks {
+    background: #aaa;
+}
+.StockItem {
+    background: #fff;
+}
+
