@@ -8,7 +8,7 @@ class AddPortfolio extends Component {
         super();
         this.state = {
             newPortfolio:{},
-            amount:0
+            amount:1
         }
     }
 
@@ -18,38 +18,55 @@ class AddPortfolio extends Component {
                 console.log("no name entered");
             }
 
-            if(this.state.amount >= 10) {
-                console.log("no name entered");
+            else if(this.state.amount > 10) {
+                console.log("10 portfolios max");
             }
            
             else {
-
-                this.setState(
-                    {newPortfolio: {
+                this.setState({newPortfolio: {
                     name: this.refs.name.value,
                     id: this.state.amount},
-                amount: this.state.amount + 1 }, function(){
-                    console.log(this.state);
+                    amount: this.state.amount + 1}, 
+                function(){
+                    this.props.addPortfolio(this.state.newPortfolio);
                 });
+                
+
+                document.getElementById("textInput").value = "";
+                var addPortfolio = document.getElementById("addPortfolio");
+                addPortfolio.style.display = "none";
             }
         e.preventDefault();
     }
 
+    togglePortfolio() {
+        var addPortfolio = document.getElementById("addPortfolio");
+        if (addPortfolio.style.display === "none" || addPortfolio.style.display === "") {
+            addPortfolio.style.display = "block"
+        }
+        else {
+            addPortfolio.style.display = "none";
+        }
+    }
+
   render() {
+
     
     return (
     <div>
 
-        <h3>Add Portfolio</h3>
+        <button onClick= {this.togglePortfolio} >Add new portfolio</button>
 
-        <form onSubmit={this.submitPortfolio.bind(this)}>
-            <label>Portfolio name:</label>
-            <input type="text" ref="name"></input>
+        <div id="addPortfolio">
+            <form onSubmit={this.submitPortfolio.bind(this)}>
+                <label>Portfolio name:</label>
+                <input type="text" ref="name" id="textInput"></input>
 
-            <input type="submit" value="Add new portfolio"></input>
-        </form>
+                <input type="submit" value="Add new portfolio"></input>
+            </form>
+
+        </div>
         
-
     </div>
     );
   }

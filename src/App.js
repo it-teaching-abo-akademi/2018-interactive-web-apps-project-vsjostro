@@ -10,10 +10,11 @@ class App extends Component {
     super();
     this.state = {
       portfolios: [],
-      stocks: []
+      currency:[]
     }
   }
 
+  
   componentWillMount() {
     this.setState({
       portfolios: [
@@ -34,12 +35,30 @@ class App extends Component {
   }
 
 
+  handleAddPortfolio(portfolio) {
+  
+    let portfolios = this.state.portfolios;
+    portfolios.push(portfolio);
+    this.setState({portfolios:portfolios});
+
+  }
+
+  handleRemovePortfolio(id) {
+    let portfolios = this.state.portfolios;
+    let index = portfolios.findIndex(x => x.id === id);
+    portfolios.splice(index, 1);
+    this.setState({portfolios:portfolios});
+
+  }
+
+  
+
   render() {
     return (
       <div className="App">
-        <AddPortfolio />
-        <Portfolios portfolios={this.state.portfolios}/>
-      
+        <AddPortfolio addPortfolio={this.handleAddPortfolio.bind(this)} />
+        <Portfolios portfolios={this.state.portfolios} remove={this.handleRemovePortfolio.bind(this)}/>
+
         
       </div>
     );

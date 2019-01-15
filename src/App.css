@@ -5,17 +5,43 @@ body {
 
 .Portfolio {
     position: relative;
-    height: 400px;
+    float: left;
+    height: 30%;
+    width: 30%;
     margin: 40px;
     padding: 40px;
+    background: #fff;
+
+    border: 2px solid black;
+}
+
+
+
+.Stocks {
+    background: #aaa;
+    height: 200px;
+    overflow: auto;
+    border: 2px solid black;
+}
+
+.stocksTable {
+    
+    width: 100%;
+}
+
+#tableHead {
+
+}
+
+#tableBody {
     
     background: #fff;
 }
 
-.Stocks {
-    background: #aaa;
-}
-.StockItem {
-    background: #fff;
-}
 
+#addPortfolio {
+    display: none;
+}
+#addStock {
+    display: none;
+}

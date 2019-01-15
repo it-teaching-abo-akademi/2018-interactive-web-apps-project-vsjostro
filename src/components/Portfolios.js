@@ -4,8 +4,9 @@ import PortfolioItem from './PortfolioItem';
 
 class Portfolios extends Component {
 
-    
-    
+    removePortfolio(id){
+        this.props.remove(id);
+    }
     
   render() {
     
@@ -14,15 +15,13 @@ class Portfolios extends Component {
         portfolioItems = this.props.portfolios.map(portfolio => {
             
             return (
-                <PortfolioItem key={portfolio.id} portfolio = {portfolio}/>
-
+                <PortfolioItem remove={this.removePortfolio.bind(this)} key={portfolio.id} portfolio = {portfolio} />
             ); 
         });
     }
     return (
 
     <div className="Portfolios">
-
 
         {portfolioItems}
 
