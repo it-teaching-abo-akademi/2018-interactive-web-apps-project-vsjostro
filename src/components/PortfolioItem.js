@@ -3,38 +3,20 @@ import Stocks from './Stocks';
 import AddStock from './AddStock';
 
 class PortfolioItem extends Component {
+    
 
     constructor() {
         super();
         this.state = {
-          stocks: [
-            {
-                id: '0',
-                name: 'a',
-                unit: 2,
-                quantity: 33,
-                total: 222,
-                select: 'yes',
-            },{
-                id: '1',
-                name: 'b',
-                unit: 2,
-                quantity: 33,
-                total: 222,
-                select: 'yes',
-            },{
-                id: '2',
-                name: 'c',
-                unit: 2,
-                quantity: 33,
-                total: 222,
-                select: 'yes',
-            }
-          ],
-         
-            amount: 3,
+          stocks: [],
+
+            selectedStocks: [],
+            amount: 0,
             currency: "usd"
         } 
+        
+
+        
     }
     
 
@@ -44,29 +26,41 @@ class PortfolioItem extends Component {
     
 
     handleAddStock(stock){
+
         let stocks = this.state.stocks;
         stocks.push(stock);
-        this.setState({stocks:stocks})
+        this.setState({stocks:stocks});
     }
 
     handleRemoveStock(id) {
         let stocks = this.state.stocks;
-        var rows = document.querySelectorAll("#select");
+        let selectedStocks = this.state.selectedStocks;
 
-        for (let i = 0; i < rows.length; i++) {
-            const element = rows[i];
+        
 
-            if(element.checked) {
+        for (let i = 0; i < selectedStocks.length; i++) {
 
-                console.log(element.value);
+            const selectedStock = selectedStocks[i];
+
+            for (let j = 0; j < stocks.length; j++) {
                 
-                stocks.splice(element.value, 1);
-                this.setState({stocks:stocks,amount: this.state.amount - 1});
+                const stock = stocks[j];
+                if(selectedStock === stock.id) {
 
-                console.log(this.state.amount);
+                    console.log(stock.id + " removed");
+                    
+                    stocks.splice(stock, 1);
+                    this.setState({stocks:stocks});
+                    
+                    this.setState({amount:this.props.amount-1});
+                    
+                }
             }
+            
 
         }
+
+        this.setState({selectedStocks:[]});
 
     }
 
@@ -99,24 +93,29 @@ class PortfolioItem extends Component {
                 
             }
         }
+    }
+
+    selectedStock(id) {
+        let selectedStocks = this.state.selectedStocks;
+        selectedStocks.push(id);
+        this.setState({selectedStocks:selectedStocks})
         
-        
-            
-      }
+    }
 
     
 
   render() {
+
     return (
         <div className="Portfolio">
             <strong>{this.props.portfolio.name}</strong>
             <button onClick={this.switchCurrency.bind(this)}>Switch Currency</button>
-            <Stocks stocks={this.state.stocks} id={this.props.portfolio.id}/>
-            <AddStock addStock={this.handleAddStock.bind(this)} id={this.props.portfolio.id}/>
-            <button onClick={this.removePortfolio.bind(this, this.props.portfolio.id)}>Remove Portfolio</button>
-            <button>Perf graph</button>
+            <Stocks stocks={this.state.stocks} id={this.props.portfolio.id}  stockSelect={this.selectedStock.bind(this)}/>
+            <AddStock addStock={this.handleAddStock.bind(this)} id={this.props.portfolio.id} amount={this.props.amount}/>
             <button onClick={this.handleRemoveStock.bind(this)}>Remove selected</button>
-       
+            <br></br><br></br>
+            <button onClick={this.removePortfolio.bind(this, this.props.portfolio.id)}>Remove Portfolio</button>
+            
         </div>
        
     )

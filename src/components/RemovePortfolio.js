@@ -9,7 +9,6 @@ class RemovePortfolio extends Component {
         this.props.removePortfolio();
         console.log(this.props.portfolio);
 
-        //this.setState({portfolios: this.props.portfolio.concat([this.props.portfolio.id])});
         
     }
 

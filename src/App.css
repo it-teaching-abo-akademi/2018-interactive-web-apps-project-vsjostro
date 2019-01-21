@@ -3,6 +3,8 @@ body {
 
 }
 
+
+
 .Portfolio {
     position: relative;
     float: left;
@@ -37,11 +39,37 @@ body {
     
     background: #fff;
 }
-
+button {
+}
 
 #addPortfolio {
     display: none;
 }
 #addStock {
     display: none;
+}
+
+#newPortfolio button {
+    width: 190px;
+    height: 40px;
+}
+
+#newPortfolio {
+    text-align: center;
+    background-color: #aaa;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+#newPortfolio label{
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+
+.addStockForm {
+    background-color: antiquewhite;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
 }

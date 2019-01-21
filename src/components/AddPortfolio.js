@@ -7,26 +7,24 @@ class AddPortfolio extends Component {
     constructor() {
         super();
         this.state = {
-            newPortfolio:{},
-            amount:1
+            newPortfolio:{}
         }
     }
 
 
     submitPortfolio(e) {
             if(this.refs.name.value === '') {
-                console.log("no name entered");
+                alert("No name entered!");
             }
 
-            else if(this.state.amount > 10) {
-                console.log("10 portfolios max");
+            else if(this.props.amount === 10) {
+                alert("10 portfolios max!");
             }
            
             else {
                 this.setState({newPortfolio: {
                     name: this.refs.name.value,
-                    id: this.state.amount},
-                    amount: this.state.amount + 1}, 
+                    id: this.props.amount}}, 
                 function(){
                     this.props.addPortfolio(this.state.newPortfolio);
                 });
@@ -53,7 +51,7 @@ class AddPortfolio extends Component {
 
     
     return (
-    <div>
+    <div id="newPortfolio">
 
         <button onClick= {this.togglePortfolio} >Add new portfolio</button>
 
@@ -62,7 +60,7 @@ class AddPortfolio extends Component {
                 <label>Portfolio name:</label>
                 <input type="text" ref="name" id="textInput"></input>
 
-                <input type="submit" value="Add new portfolio"></input>
+                <input type="submit" value="Add"></input>
             </form>
 
         </div>

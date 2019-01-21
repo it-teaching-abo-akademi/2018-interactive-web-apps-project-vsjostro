@@ -4,15 +4,21 @@ import StockItem from './StockItem';
 
 class Stocks extends Component {
 
-  
 
+  stockSelect(id){
+    this.props.stockSelect(id);
+  }
+
+
+
+  
   render() {
     let stockItems;
     if(this.props.stocks) {
         stockItems = this.props.stocks.map(stock => {
           
             return (
-                <StockItem key={stock.id} stock = {stock} />
+                <StockItem key={stock.id} stock = {stock} stockSelect={this.stockSelect.bind(this)} />
 
             ); 
         });
@@ -23,8 +29,6 @@ class Stocks extends Component {
       
       <div className="Stocks">
 
-        
-
         <table className="stocksTable">
         
         <thead id="tableHead">
@@ -34,8 +38,7 @@ class Stocks extends Component {
               <th>Quantity</th>
               <th>Total value</th>
               <th>Select</th>
-              
-
+            
           </tr>
 
         </thead>
