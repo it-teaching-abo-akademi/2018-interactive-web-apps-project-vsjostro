@@ -1,0 +1,75 @@
+body {
+    background: gray;
+
+}
+
+
+
+.Portfolio {
+    position: relative;
+    float: left;
+    height: 30%;
+    width: 30%;
+    margin: 40px;
+    padding: 40px;
+    background: #fff;
+
+    border: 2px solid black;
+}
+
+
+
+.Stocks {
+    background: #aaa;
+    height: 200px;
+    overflow: auto;
+    border: 2px solid black;
+}
+
+.stocksTable {
+    
+    width: 100%;
+}
+
+#tableHead {
+
+}
+
+#tableBody {
+    
+    background: #fff;
+}
+button {
+}
+
+#addPortfolio {
+    display: none;
+}
+#addStock {
+    display: none;
+}
+
+#newPortfolio button {
+    width: 190px;
+    height: 40px;
+}
+
+#newPortfolio {
+    text-align: center;
+    background-color: #aaa;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+#newPortfolio label{
+    font-size: 18px;
+    padding-right: 10px;
+}
+
+
+.addStockForm {
+    background-color: antiquewhite;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 10px;
+}
