@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Stocks from './Stocks';
 import AddStock from './AddStock';
+import './PortfolioItem.css';
 
 class PortfolioItem extends Component {
     
@@ -8,28 +9,29 @@ class PortfolioItem extends Component {
     constructor() {
         super();
         this.state = {
-          stocks: [],
-
+            stocks: [],
             selectedStocks: [],
             amount: 0,
-            currency: "usd"
+            currency: "$",
+            portfolioTotal:0
         } 
-        
-
-        
     }
     
 
     removePortfolio(id){
-        this.props.remove(id);
+        if(window.confirm("Are you sure you want to delete this portfolio?")){
+            this.props.remove(id);
+        }
     }
     
 
-    handleAddStock(stock){
+    handleAddStock(stock, total){
 
         let stocks = this.state.stocks;
+        let portfolioTotal = this.state.portfolioTotal;
+
         stocks.push(stock);
-        this.setState({stocks:stocks});
+        this.setState({stocks:stocks, portfolioTotal: (parseFloat(total) + parseFloat(portfolioTotal)).toFixed(2)});
     }
 
     handleRemoveStock(id) {
@@ -46,12 +48,9 @@ class PortfolioItem extends Component {
                 
                 const stock = stocks[j];
                 if(selectedStock === stock.id) {
-
-                    console.log(stock.id + " removed");
                     
                     stocks.splice(stock, 1);
                     this.setState({stocks:stocks});
-                    
                     this.setState({amount:this.props.amount-1});
                     
                 }
@@ -64,42 +63,10 @@ class PortfolioItem extends Component {
 
     }
 
-    //1USD = 0.871842EUR
-    //1 EUR = 1.14700 USD
-
-    switchCurrency() {
-
-        if(this.state.currency === "usd") {
-            this.setState({currency: "euro"});
-            console.log("euro");
-            for (let i = 0; i < this.state.stocks.length; i++) {
-
-                const unit = Object.assign({}, this.state.stocks, {unit: (this.state.stocks[i].unit * 0.871842).toFixed(2)});
-                this.setState({unit}, () => {
-                    console.log(this.state.stocks[i].unit);
-                });
-                
-            }
-        }
-
-        if(this.state.currency === "euro") {
-            this.setState({currency: "usd"})
-            console.log("usd");
-            for (let i = 0; i < this.state.stocks.length; i++) {
-                this.setState({
-                    //stocks: update(this.state.stocks, {i: {unit: {$set: (this.state.stocks[i].unit * 0.871842).toFixed(2)}}})
-                });
-                this.forceUpdate();
-                
-            }
-        }
-    }
-
     selectedStock(id) {
         let selectedStocks = this.state.selectedStocks;
         selectedStocks.push(id);
         this.setState({selectedStocks:selectedStocks})
-        
     }
 
     
@@ -109,12 +76,13 @@ class PortfolioItem extends Component {
     return (
         <div className="Portfolio">
             <strong>{this.props.portfolio.name}</strong>
-            <button onClick={this.switchCurrency.bind(this)}>Switch Currency</button>
-            <Stocks stocks={this.state.stocks} id={this.props.portfolio.id}  stockSelect={this.selectedStock.bind(this)}/>
+            <button id="removeButton" onClick={this.removePortfolio.bind(this, this.props.portfolio.id)}>Remove Portfolio</button>
+            <Stocks stocks={this.state.stocks} name={this.props.portfolio.name} stockSelect={this.selectedStock.bind(this)}/>
+            <label>Total value of {this.props.portfolio.name}: {this.state.portfolioTotal}{this.state.currency} </label><br></br>
             <AddStock addStock={this.handleAddStock.bind(this)} id={this.props.portfolio.id} amount={this.props.amount}/>
+        
             <button onClick={this.handleRemoveStock.bind(this)}>Remove selected</button>
             <br></br><br></br>
-            <button onClick={this.removePortfolio.bind(this, this.props.portfolio.id)}>Remove Portfolio</button>
             
         </div>
        

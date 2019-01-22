@@ -48,8 +48,6 @@ class App extends Component {
       <div className="App">
         <AddPortfolio addPortfolio={this.handleAddPortfolio.bind(this)} amount={this.state.amount}/>
         <Portfolios portfolios={this.state.portfolios} remove={this.handleRemovePortfolio.bind(this)}/>
-
-        
       </div>
     );
   }

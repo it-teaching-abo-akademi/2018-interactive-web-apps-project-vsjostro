@@ -1,3 +1,3 @@
-# 2018-interactive-web-apps-project-vsjostro
+Stock Portfolio Management System
 
-1. run npm start
+https://it-teaching-abo-akademi.github.io/2018-interactive-web-apps-project-vsjostro/

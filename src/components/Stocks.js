@@ -47,6 +47,7 @@ class Stocks extends Component {
           </tbody>
         
       </table>
+
       </div>
     );
   }

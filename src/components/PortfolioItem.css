@@ -1,0 +1,17 @@
+#removeButton {
+    background-color: #f08080;
+    float: right;
+}
+
+
+#tableHead {
+    color: white;
+    background-color: #000000;
+}
+
+#tableBody {
+    text-align: center;
+    background-color: white;
+    border: 1px solid black;
+
+}

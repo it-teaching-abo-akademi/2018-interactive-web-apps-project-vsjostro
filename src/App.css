@@ -1,16 +1,13 @@
 body {
     background: gray;
-
 }
-
-
 
 .Portfolio {
     position: relative;
     float: left;
     height: 30%;
-    width: 30%;
-    margin: 40px;
+    width: 40%;
+    margin: 20px;
     padding: 40px;
     background: #fff;
 
@@ -21,26 +18,16 @@ body {
 
 .Stocks {
     background: #aaa;
+    
     height: 200px;
     overflow: auto;
     border: 2px solid black;
 }
 
 .stocksTable {
-    
     width: 100%;
 }
 
-#tableHead {
-
-}
-
-#tableBody {
-    
-    background: #fff;
-}
-button {
-}
 
 #addPortfolio {
     display: none;
@@ -73,3 +60,4 @@ button {
     padding: 10px;
     margin: 10px;
 }
+
